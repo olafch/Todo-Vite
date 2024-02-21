@@ -11,6 +11,8 @@ const state = {
     new Todo("La pieda del alma"),
     new Todo("La pieda del infinito"),
     new Todo("La pieda del tiempo"),
+    new Todo("La pieda del poder"),
+    new Todo("La pieda del realidad"),
   ],
   filter: Filters.All,
 };
@@ -24,12 +26,27 @@ const loadStore = () => {
   throw new Error("Not implemented");
 };
 
+const getTodos = (filter = Filters.All) => {
+  switch (filter) {
+    case Filters.All:
+      return [...state.todos];
+    case Filters.Completed:
+      return state.todos.filter((todo) => todo.done);
+    case Filters.Pending:
+      return state.todos.filter((todo) => !todo.done);
+    default:
+      throw new Error(`Option ${filter} isn't valid.`);
+  }
+};
+
 /**
  *
  * @param {String} description
  */
 const addTodo = (description) => {
-  throw new Error("Not implemented");
+  if (!description) throw new Error("Description is required");
+
+  state.todos.push(new Todo(description));
 };
 
 /**
@@ -37,29 +54,40 @@ const addTodo = (description) => {
  * @param {String} todoId Todo identifier
  */
 const toggleTodo = (todoId) => {
-  throw new Error("Not implemented");
+  state.todos = state.todos.map((todo) => {
+    if (todo.id === todoId) {
+      todo.done = !todo.done;
+    }
+    return todo;
+  });
 };
 
 const deleteTodo = (todoId) => {
-  throw new Error("Not implemented");
+  state.todos = state.todos.filter((todo) => todo.id !== todoId);
 };
 
 const deleteCompleted = () => {
-  throw new Error("Not implemented");
+  state.todos = state.todos.filter((todo) => !todo.done);
 };
 
+/**
+ *
+ * @param {Filters} newFilter
+ */
 const setFilter = (newFilter = Filters.All) => {
-  throw new Error("Not implemented");
+  state.filter = newFilter;
 };
 
-const getFilter = () => {
-  throw new Error("Not implemented");
+const getCurrentFilter = () => {
+  return state.filter;
 };
 
 export default {
+  addTodo,
   deleteCompleted,
   deleteTodo,
-  getFilter,
+  getCurrentFilter,
+  getTodos,
   initStore,
   loadStore,
   setFilter,
