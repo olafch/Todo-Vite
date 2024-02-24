@@ -8,11 +8,11 @@ export const Filters = {
 
 const state = {
   todos: [
-    new Todo("La pieda del alma"),
-    new Todo("La pieda del espacio"),
-    new Todo("La pieda del tiempo"),
-    new Todo("La pieda del poder"),
-    new Todo("La pieda del realidad"),
+    new Todo("First default task"),
+    new Todo("Second default task"),
+    new Todo("Third default task"),
+    new Todo("Fourth default task"),
+    new Todo("Fifth default task"),
   ],
   filter: Filters.All,
 };

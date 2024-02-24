@@ -77,13 +77,13 @@ export const App = (elementId) => {
       element.target.classList.add("selected");
 
       switch (element.target.text) {
-        case "Todos":
+        case "All":
           todoStore.setFilter(Filters.All);
           break;
-        case "Pendientes":
+        case "Pending":
           todoStore.setFilter(Filters.Pending);
           break;
-        case "Completados":
+        case "Completed":
           todoStore.setFilter(Filters.Completed);
           break;
       }
